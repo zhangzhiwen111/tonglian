@@ -1,0 +1,257 @@
+@charset "utf-8";
+.backstages form {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+body {
+	margin: 0px;
+    padding: 0px;
+    height: 100%;
+    overflow: hidden;
+}
+.backstages_textfield1 {
+    width: 54%;
+    height: 34px;
+    margin-bottom: 17px;
+    color: #696969;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 12px;
+    vertical-align: middle;
+    font-size: 14px;
+    font-family: "Microsoft YaHei UI";
+    box-sizing: border-box;
+    margin-top: 0px;
+    box-shadow: 0 0 0px 1000px white inset;
+    float: left;
+    margin-right: 0px;
+}.backstages_textfield2 {
+    width: 54%;
+    height: 34px;
+    margin-bottom: 9px;
+    color: #696969;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 12px;
+    vertical-align: middle;
+    font-family: "Microsoft YaHei UI";
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    box-shadow: 0 0 0px 1000px white inset;
+    float: left;
+    margin-left: 15px;
+}
+.backstages_button1 {
+	height: 40px;
+	width: 94px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	vertical-align: middle;
+	font-family: "Microsoft YaHei UI";
+	font-size: 15px;
+	color: #FFF;
+	margin-top: 12px;
+	margin-bottom: 19px;
+	background-image: url(../css/aniu.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: transparent;
+	text-align: center;
+	margin-left: 65px;
+}
+.backstages_button2 {
+	height: 40px;
+	width: 94px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	vertical-align: middle;
+	font-family: "Microsoft YaHei UI";
+	font-size: 15px;
+	color: #FFF;
+	margin-top: 12px;
+	margin-bottom: 19px;
+	background-image: url(/css/aniu.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: transparent;
+	text-align: center;
+}
+.backstages p {
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: 15px;
+	margin-bottom: 0px;
+	text-align: center;
+}
+.backstages a {
+	color: #5facfb;
+	text-decoration: none;
+	font-family: "Microsoft YaHei UI";
+	font-size: 15px;
+	margin-right: 6px;
+	margin-left: 6px;
+}
+.backstages h1 {
+    font-family: "Microsoft YaHei UI";
+    font-size: 30px;
+    font-weight: normal;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #ffffff;
+    text-align: center;
+	text-shadow: -5px 5px 5px #002f5a;
+}
+.backstages h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	color: #FFFFFF;
+	text-align: center;
+}
+.backstages h3 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 16px;
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.backstages h4 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 16px;
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.backstages h5 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 16px;
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.backstages h6 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 16px;
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.backstages {
+	height: 100vh;
+	width: 100%;
+	background-image: url(/css/bj.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: #0b6bc1;
+}
+.backstages_header {
+	float: left;
+	width: 100%;
+	margin-top: 0px;
+	margin-bottom: 24px;
+}
+.backstages_middle {
+    float: left;
+    width: 75%;
+    position: relative;
+    padding-top: 48px;
+    margin-left: 25%;
+}
+.backstages_inner2 {
+	float: left;
+	width: 100%;
+}
+.backstages_bottom {
+	float: left;
+	margin-left: 67px;
+}
+.backstages_word {
+	float: left;
+	width: 100%;
+	padding-top: 0px;
+}
+.backstages_center {
+	color: #FFFFFF;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 0px;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	width: 42%;
+	background-image: url(/css/k1.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 371px;
+}
+.backstages_inner {
+	float: left;
+	box-sizing: border-box;
+	width: 100%;
+	padding-top: 0px;
+	padding-right: 51px;
+	padding-bottom: 35px;
+	padding-left: 51px;
+}
+.backstages_right {
+	float: right;
+}
+.backstages label {
+    font-family: "Microsoft YaHei UI";
+    font-size: 15px;
+    color: #ffffff;
+    margin-left: 7px;
+    float: left;
+    display: inline-block;
+    margin-top: 7px;
+}
+.backstages_bottom .error {
+	color: #F00;
+	float: right;
+	font-weight: bold;
+	font-size: 13px;
+	vertical-align: middle;
+}
+.backstages_bottom .error span {
+	background-image: url(/css/err.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	padding: 7px;
+	margin-right: 6px;
+	vertical-align: middle;
+}
+.check_box {
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    margin-top: 3px;
+    margin-right: 6px;
+}
+input:focus {
+    outline-width: 0px;
+}
+.backstages_button1:focus {
+    outline-width: 0px;
+}
+.backstages_button2:focus {
+    outline-width: 0px;
+}
+.backstages_button1:hover {
+	cursor: pointer;
+	background-image: url(/css/aniu2.png);
+}
+.backstages_button2:hover {
+	cursor: pointer;
+	background-image: url(/css/aniu2.png);
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hk.tonglian.mappers.UserMapper">
+    <resultMap id="BaseResultMap" type="com.hk.tonglian.entity.User">
+        <id column="account_id" jdbcType="VARCHAR" property="accountId" />
+        <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+        <result column="account_pass" jdbcType="VARCHAR" property="accountPass" />
+    </resultMap>
+
+    <select id = "checkuser" parameterType="com.hk.tonglian.entity.User" resultMap="BaseResultMap">
+        select *
+        from "SYSTL"."user"
+        where account_name= #{user.accountName} and account_pass = #{user.accountPass}
+    </select>
+
+</mapper>
