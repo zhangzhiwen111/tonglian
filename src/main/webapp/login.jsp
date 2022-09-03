@@ -39,24 +39,50 @@
 </body>
 </html>
 <script type="text/javascript">
-    function login(){
+    function login() {
         var loginame= $('#loginame').val();
+        if (loginame == "") {
+            alert("请输入用户名");
+            return false;
+        }
         var loginpwd= $('#loginpwd').val();
+        if (loginpwd == "") {
+            alert("请输入密码");
+            return false;
+        }
+        //ajax请求
         $.ajax({
-            url: '/login/login',
-            data:{
+            type: "POST",
+            url: "/login/login",
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            dataType: "json",
+            data: {
                 "accountName":loginame,
                 "accountPass":loginpwd
             },
-            type: 'POST',
-            datatype:"json",
             success: function (data) {
-                if(data.status==0){
-                    /*location.href="main.jsp";*/
+                if (data.status) {
+                    window.location.href = "/login/index";
+                } else {
+                    alert(data.msg);
                 }
-            }
+            }/*,
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (XMLHttpRequest.status != 999) {
+                    layer.alert("服务器异常，请联系管理员", {
+                        icon: 2,
+                        title: "提示信息"
+                    });
+                }
+            }*/
         });
     }
+
+    $(document).keydown(function (event) {
+        if (event.keyCode == 13) {
+            loginExt();
+        }
+    });
 
 
 </script>
