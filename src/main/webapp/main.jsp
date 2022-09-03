@@ -14,7 +14,7 @@
 <body>
 <div class ="top"  style="width: 100%;height: 80px;background-color: #397bc5">
     <div class="header_left">
-        <h1>通联平台</h1>
+        <h1>通联平台123</h1>
     </div>
     <div class="header_right"  width="100%" height="70">
         <ul>
