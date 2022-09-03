@@ -1177,7 +1177,7 @@ font-family: "Microsoft YaHei UI";
     margin-top: 17px;
 }
 .modal1_right {
-	float: left;
+	/*float: left;*/
 	width: calc(100% - 240px);
 }
 

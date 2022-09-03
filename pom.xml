@@ -69,19 +69,19 @@
 
     <build>
         <!--        springboot集成jsp路径-->
-        <resources>
+<!--        <resources>
             <resource>
-                <!--                源文件夹-->
+                &lt;!&ndash;                源文件夹&ndash;&gt;
                 <directory>src/main/webapp</directory>
-                <!--                指定编译的位置-->
+                &lt;!&ndash;                指定编译的位置&ndash;&gt;
                 <targetPath>src/main/resources</targetPath>
-                <!--                哪些资源需要编译-->
+                &lt;!&ndash;                哪些资源需要编译&ndash;&gt;
                 <includes>
-                    <!--                    所有资源-->
+                    &lt;!&ndash;                    所有资源&ndash;&gt;
                     <include>*.*</include>
                 </includes>
             </resource>
-        </resources>
+        </resources>-->
 
         <plugins>
             <plugin>
