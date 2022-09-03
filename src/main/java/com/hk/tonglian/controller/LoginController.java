@@ -4,14 +4,20 @@ import com.hk.tonglian.entity.User;
 import com.hk.tonglian.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
- * @description TODO
+ * @description 登录
  * @Author:zzw
  * @Date:2022/9/1 16:37
  */
@@ -29,23 +35,47 @@ public class LoginController {
 
     @RequestMapping("login")
     @ResponseBody
-    public Map<String,Object> login(User user){
+    public Map<String,Object> login(User user, HttpServletRequest request, HttpServletResponse response){
         Map<String,Object> result = new HashMap<>();
-        User user1 = userService.checkuser(user);
-        if(user1!=null){
-            result.put("status","0");
-            result.put("user",user1);
-        }else{
+
+        try {
+            request.getSession(true);//生成客户端session
+            User user1 = userService.checkuser(user);
+            if (user1!=null) {
+                request.getSession().setAttribute("currentSessionUser", user1);
+                result.put("status", "0");
+                result.put("user", user1);
+                return result;
+            } else {
+                result.put("status", "1");
+                result.put("msg", "用户名或密码错误");
+                return result;
+            }
+
+        } catch (Exception e) {
+            result.put("msg",e.getMessage());
             result.put("status","1");
-            result.put("msg","用户名或密码错误！");
+            e.printStackTrace();
         }
+
         return result;
     }
 
-    @RequestMapping("login2")
-    public String login2(User user){
 
-        return "main";
+
+    @RequestMapping("index")
+    @ResponseBody
+    public ModelAndView login2(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        User user = (User) request.getSession().getAttribute("currentSessionUser");
+        model.addObject("user",user);
+        model.setViewName("main");
+        return model;
+    }
+
+    @RequestMapping("logout")
+    public String logout(){
+        return "login";
     }
 
 }

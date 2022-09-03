@@ -21,8 +21,8 @@
     <div class="header_right"  width="100%" height="70">
         <ul>
             <li><a><i class="fa fa-user-circle-o" aria-hidden="true"></i>张志文</a></li>
-            <li><a onclick="chagepwd();"><i class="fa fa-lock" aria-hidden="true" ></i>修改密码</a></li>
-            <li><a onclick="logout();"><i class="fa fa-power-off" aria-hidden="true"></i>退出登录</a></li>
+            <li><a><i class="fa fa-lock" aria-hidden="true" ></i>修改密码</a></li>
+            <li><a href="/login/logout"><i class="fa fa-power-off" aria-hidden="true"></i>退出登录</a></li>
         </ul>
     </div>
 </div>
@@ -129,4 +129,7 @@
 </div>
 </body>
 </html>
+<script >
 
+
+</script>
