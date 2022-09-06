@@ -1,6 +1,7 @@
 package com.hk.tonglian.controller;
 
 import com.hk.tonglian.entity.User;
+import com.hk.tonglian.service.UnitService;
 import com.hk.tonglian.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UnitService unitService;
     @RequestMapping("tologin")
     public String tologin(){
         return "login";
@@ -65,11 +68,19 @@ public class LoginController {
 
     @RequestMapping("index")
     @ResponseBody
-    public ModelAndView login2(HttpServletRequest request){
+    public ModelAndView index(HttpServletRequest request){
         ModelAndView model = new ModelAndView();
+        Map<String,Object> result = new HashMap<>();
         User user = (User) request.getSession().getAttribute("currentSessionUser");
-        model.addObject("user",user);
-        model.setViewName("main");
+        if(user!=null){
+            result = unitService.selUnitAll(user);
+            model.addObject("user",user);
+            model.addObject("unitmap",result);
+            model.setViewName("main");
+        }else{
+            model.addObject("msg","请重新登录！");
+            model.setViewName("login");
+        }
         return model;
     }
 

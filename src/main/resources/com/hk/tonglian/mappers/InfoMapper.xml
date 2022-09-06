@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hk.tonglian.mappers.InfoMapper">
+    <resultMap id="BaseResultMap" type="com.hk.tonglian.entity.Info">
+        <id column="info_id" jdbcType="VARCHAR" property="infoId" />
+        <result column="info_title" jdbcType="VARCHAR" property="infoTitle" />
+        <result column="info_content" jdbcType="CLOB" property="infoContent" />
+        <result column="info_creatorcn" jdbcType="VARCHAR" property="infoCreatorcn"/>
+        <result column="info_creatoren" jdbcType="VARCHAR" property="infoCreatoren" />
+        <result column="info_reatorunit" jdbcType="VARCHAR" property="infoCreatorunit" />
+        <result column="info_createtime" jdbcType="VARCHAR" property="infoCreatetime" />
+        <result column="info_updatetme" jdbcType="VARCHAR" property="infoUpdatetme" />
+        <result column="info_type" jdbcType="VARCHAR" property="infoType" />
+        <result column="info_status" jdbcType="VARCHAR" property="infoStatus" />
+        <result column="info_tocolumn" jdbcType="VARCHAR" property="infoToColumn" />
+        <result column="default1" jdbcType="VARCHAR" property="default1" />
+        <result column="default2" jdbcType="VARCHAR" property="default2" />
+    </resultMap>
+
+    <!-- 字段 -->
+    <sql id="Field">
+        "info_id",
+        "info_title",
+        "info_content",
+        "info_creatorcn",
+        "info_creatoren",
+        "info_reatorunit",
+        "info_createtime",
+        "info_updatetme",
+        "info_type",
+        "info_status",
+        "info_tocolumn",
+        "default1",
+        "default2"
+    </sql>
+    <!-- 字段值 -->
+    <sql id="FieldValue">
+        #{infoId},
+        #{infoTitle},
+        #{infoContent},
+        #{infoCreatorcn},
+        #{infoCreatoren},
+        #{infoCreatorunit},
+        #{infoCreatetime},
+        #{infoUpdatetme},
+        #{infoType},
+        #{infoStatus},
+        #{infoToColumn},
+        #{default1},
+        #{default2}
+    </sql>
+    <select id = "selAll"  resultMap="BaseResultMap">
+        select *
+        from "SYSTL"."info"
+    </select>
+    <select id = "selOneById" parameterType="String" resultType="com.hk.tonglian.entity.Info">
+        select *
+        from "SYSTL"."info"
+        where info_id=#{infoId}
+    </select>
+    <insert id="add" parameterType="com.hk.tonglian.entity.Info">
+        insert into "SYSTL"."info"
+        (
+        <include refid="Field"></include>
+        )
+        values(
+        <include refid="FieldValue"></include>
+        )
+    </insert>
+    <update id="edit" parameterType="com.hk.tonglian.entity.Info">
+        update "SYSTL"."info"
+        set
+        <if test="infoTitle != null and infoTitle != ''">
+            "info_title" = #{infoTitle},
+        </if>
+        <if test="infoContent != null and infoContent != ''">
+            "info_content" = #{infoContent},
+        </if>
+        <if test="infoCreatorcn != null and infoCreatorcn != ''">
+            "info_creatorcn" = #{infoCreatorcn},
+        </if>
+        <if test="infoCreatoren != null and infoCreatoren != ''">
+            "info_creatoren" = #{infoCreatoren},
+        </if>
+        <if test="infoCreatorunit != null and infoCreatorunit != ''">
+            "info_creatorunit" = #{infoCreatorunit},
+        </if>
+        <if test="infoType != null and infoType != ''">
+            "info_type" = #{infoType},
+        </if>
+        <if test="infoStatus != null and infoStatus != ''">
+            "info_status" = #{infoStatus},
+        </if>
+        <if test="infoToColumn != null and infoToColumn != ''">
+            "info_tocolumn" = #{infoToColumn},
+        </if>
+        <if test="default1 != null and default1 != ''">
+            "default1" = #{default1},
+        </if>
+        <if test="default2 != null and default2 != ''">
+        "default2" = #{default2},
+    </if>
+        "info_createtime" = #{infoCreatetime},
+        "info_updatetme" = #{infoUpdatetme}
+        where
+        "info_id" = #{infoId}
+    </update>
+
+</mapper>

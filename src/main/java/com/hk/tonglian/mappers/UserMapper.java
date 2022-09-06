@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.Mapping;
 
+import java.util.List;
+
 /**
  * @description TODO
  * @Author:zzw
@@ -12,5 +14,15 @@ import org.springframework.web.bind.annotation.Mapping;
  */
 @Mapper
 public interface UserMapper {
-    public User checkuser(@Param("user") User user);
+    User checkuser(@Param("user") User user);
+
+    User selUserById(@Param("accountId") String accounId);
+
+    User selUserByName(@Param("accountName") String accountName);
+
+    void save(User user);
+
+    void update(User user);
+
+    List<User> selUserAll();
 }

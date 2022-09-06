@@ -3,6 +3,8 @@ package com.hk.tonglian.service;
 import com.hk.tonglian.entity.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @description TODO
  * @Author:zzw
@@ -11,5 +13,15 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-    public User checkuser(User user);
+    User checkuser(User user);
+
+    User selUserById(String uid);
+
+    User selUserByName(String accountName);
+
+    void save(User user);
+
+    void edit(User user);
+
+    List<User> selUserAll();
 }

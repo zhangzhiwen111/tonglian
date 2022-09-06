@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -8,15 +10,18 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/left-side-menu.css">
     <link rel="stylesheet" type="text/css" href="/font/iconfont.css">
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="/js/left-side-menu.js"></script>
 </head>
 <body>
+<div style="width: 100%;float: left;height: 100vh;min-width: 1280px;">
+
 <div class ="top"  style="width: 100%;height: 80px;background-color: #397bc5">
     <div class="header_left">
-        <h1>通联平台</h1>
+        <h1 style="color: #ffffff;font-size: 27px;margin-top: 25px;margin-left: 17px;">通联平台</h1>
     </div>
     <div class="header_right"  width="100%" height="70">
         <ul>
@@ -29,6 +34,7 @@
 <div class="left-side-menu" >
     <div class="lsm-expand-btn">
         <div class="lsm-mini-btn">
+<%--
             <label>
                 <input type="checkbox" checked="checked">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -38,6 +44,7 @@
                     <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
                 </svg>
             </label>
+--%>
 
         </div>
         <!--        <input type="text"/>-->
@@ -48,25 +55,33 @@
             <div class="lsm-sidebar">
                 <ul>
                     <li class="lsm-sidebar-item">
-                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_1"></i><span>信息报送</span><i class="my-icon lsm-sidebar-more"></i></a>
-                        <ul>
-                            <li>
-                                <a href="javascript:;"><i class="my-icon lsm-sidebar-icon "></i><span>各民主党派</span><i class="my-icon lsm-sidebar-more"></i></a>
-                                <ul>
-                                    <li><a href="javascript:;"><span>民革市委</span></a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <a href="javascript:;"><i class="fa fa-paper-plane" aria-hidden="true"></i><span>信息报送</span><i class="my-icon lsm-sidebar-more"></i></a>
+
+                            <ul>
+                                <c:forEach items="${unitmap.data}" var="map" varStatus="vs">
+                                <li>
+                                    <a href="javascript:;"><i class="my-icon lsm-sidebar-icon "></i><span>${map.parent.unitName}</span><i class="my-icon lsm-sidebar-more"></i></a>
+
+                                    <ul>
+                                        <c:forEach items="${map.child}" var="childUnit" varStatus="vs">
+                                        <li><a href="javascript:;"><span>${childUnit.unitName}</span></a></li>
+                                        </c:forEach>
+                                    </ul>
+
+                                </li>
+                                </c:forEach>
+                            </ul>
+
                     </li>
                 </ul>
                 <ul>
                     <li class="lsm-sidebar-item">
-                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_1"></i><span>公告管理</span></a>
+                        <a href="javascript:;"><i class="fa fa-volume-up" aria-hidden="true"></i><span>公告管理</span></a>
                     </li>
                 </ul>
                 <ul>
                     <li class="lsm-sidebar-item">
-                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_1"></i><span>用户管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <a href="javascript:;"><i class="fa fa-user" aria-hidden="true"></i><span>用户管理</span><i class="my-icon lsm-sidebar-more"></i></a>
                         <ul>
                             <li><a href="javascript:;"><span>新增用户</span></a></li>
                             <li><a href="javascript:;"><span>修改用户</span></a></li>
@@ -76,60 +91,11 @@
             </div>
         </div>
     </div>
+</div>
 
-</div>
-<div class="modal1_right">
-    <div class="lb2">
-            <input type="text" class="lb2_textfield" placeholder="这里输入关键词" name="keywords" id="keywords" value=""/>
-            <span>开始时间：</span>
-            <input type="date" class="lb2_textfield" id="time_start"  name="time_start" value=""/>
-            <span>结束时间：</span>
-            <input type="date" class="lb2_textfield" id="time_end"  name="time_end" value="" />
-            <select name="sestatus" id="sestatus">
-                <option >状态</option>
-            </select>
-            <input type="button" class="lb2_button3" value="搜索" onclick="submitsearch();"/>
-            <input type="button" class="lb2_button6" value="+ 新增" onclick="addinfo();" />
-            <input type="button" id = "yjfb" class="lb2_button6" value="一键发布" />
-    </div>
-<div class="table-responsive">
-    <table class="table">
-        <caption>响应式表格布局</caption>
-        <thead>
-        <tr>
-            <th>产品</th>
-            <th>付款日期</th>
-            <th>状态</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>产品1</td>
-            <td>23/11/2013</td>
-            <td>待发货</td>
-        </tr>
-        <tr>
-            <td>产品2</td>
-            <td>10/11/2013</td>
-            <td>发货中</td>
-        </tr>
-        <tr>
-            <td>产品3</td>
-            <td>20/10/2013</td>
-            <td>待确认</td>
-        </tr>
-        <tr>
-            <td>产品4</td>
-            <td>20/10/2013</td>
-            <td>已退货</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+        <div class="modal1_right">
+            <iframe frameborder="0" scrolling="yes" style="width:100%;height:100%" src="/info.jsp"  name = "rightFrame" id="rightFrame"></iframe>
+        </div>
 </div>
 </body>
 </html>
-<script >
-
-
-</script>

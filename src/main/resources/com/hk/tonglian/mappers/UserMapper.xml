@@ -5,7 +5,43 @@
         <id column="account_id" jdbcType="VARCHAR" property="accountId" />
         <result column="account_name" jdbcType="VARCHAR" property="accountName" />
         <result column="account_pass" jdbcType="VARCHAR" property="accountPass" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="account_type" jdbcType="VARCHAR" property="accountType"/>
+        <result column="account_pass_setTime" jdbcType="VARCHAR" property="accountPassSetTime"/>
+        <result column="account_order" jdbcType="VARCHAR" property="accountOrder"/>
+        <result column="unit_id" jdbcType="VARCHAR" property="unitId" />
+        <result column="default1" jdbcType="VARCHAR" property="default1" />
+        <result column="default2" jdbcType="VARCHAR" property="default2" />
     </resultMap>
+    <!-- 字段 -->
+    <sql id="Field">
+        "account_id",
+        "account_name",
+        "account_pass",
+        "status",
+        "nick_name",
+        "account_type",
+        "account_pass_setTime",
+        "account_order",
+        "unit_id",
+        "default1",
+        "default2"
+    </sql>
+    <!-- 字段值 -->
+    <sql id="FieldValue">
+        #{accountId},
+        #{accountName},
+        #{accountPass},
+        #{status},
+        #{nickName},
+        #{accountType},
+        #{accountPassSetTime},
+        #{accountOrder},
+        #{unitId},
+        #{default1},
+        #{default2}
+    </sql>
 
     <select id = "checkuser" parameterType="com.hk.tonglian.entity.User" resultMap="BaseResultMap">
         select *
@@ -13,4 +49,63 @@
         where account_name= #{user.accountName} and account_pass = #{user.accountPass}
     </select>
 
+    <select id = "selUserById" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from "SYSTL"."user"
+        where account_id= #{accountId}
+    </select>
+
+    <select id = "selUserByName" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from "SYSTL"."user"
+        where account_name= #{accountName}
+    </select>
+    <insert id="save" parameterType="com.hk.tonglian.entity.User">
+        insert
+        into "SYSTL"."user"
+        (
+        <include refid="Field"></include>
+        )
+        values(
+        <include refid="FieldValue"></include>
+        )
+    </insert>
+    <update id="update"  parameterType="com.hk.tonglian.entity.User">
+        update "SYSTL"."user"
+        set
+        <if test="accountName != null and accountName != ''">
+            "account_name" = #{accountName},
+        </if>
+        <if test="accountPass != null and accountPass != ''">
+            "account_pass" = #{accountPass},
+        </if>
+        <if test="status != null and status != ''">
+            "status" = #{status},
+        </if>
+        <if test="nickName != null and nickName != ''">
+            "nick_name" = #{nickName},
+        </if>
+        <if test="accountType != null and accountType != ''">
+            "account_type" = #{accountType},
+        </if><if test="accountPassSetTime != null and accountPassSetTime != ''">
+        "account_pass_setTime" = #{accountPassSetTime},
+        </if>
+        <if test="accountOrder != null and accountOrder != ''">
+            "account_order" = #{accountOrder},
+        </if>
+        <if test="unitId != null and unitId != ''">
+            "unit_td" = #{unitId},
+        </if>
+        <if test="default1 != null and default1 != ''">
+            "default1" = #{default1},
+        </if>
+        <if test="default2 != null and default2 != ''">
+            "default2" = #{default2},
+        </if>
+        where account_id=#{accountId}
+    </update>
+
+    <select id="selUserAll" resultMap="BaseResultMap">
+        select * from "SYSTL"."user"
+    </select>
 </mapper>

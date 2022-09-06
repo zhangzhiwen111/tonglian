@@ -3,7 +3,6 @@
 <html>
 <head>
 <title>无标题文档</title>
-<link href="/css/css.css" rel="stylesheet" type="text/css" />
 
 
 

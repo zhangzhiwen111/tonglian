@@ -82,7 +82,7 @@
 	width: 94%;
 	margin-right: 3%;
 	margin-left: 3%;
-	margin-top: 63px;
+	margin-top: 18px;
 }
 .lb3 .table tbody tr td span {
 	margin-right: 4px;
@@ -1177,10 +1177,13 @@ font-family: "Microsoft YaHei UI";
     margin-top: 17px;
 }
 .modal1_right {
-	/*float: left;*/
-	width: calc(100% - 240px);
+	float: right;
+	width: calc(100% - 220px);
+	height: calc(100% - 80px);
 }
-
+.left-side-menu{
+	float: left;
+}
 .x-strict{
 	margin-bottom: 50px;
 }
@@ -1245,4 +1248,8 @@ font-family: "Microsoft YaHei UI";
   border-radius: 10px;
   background   : #ffffff;
  }
+.header_right ul li{
+	float: left;
+	padding: 30px 15px;
+}
  /**********************滚动条 end**********************/

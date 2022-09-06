@@ -1,7 +1,7 @@
 package com.hk.tonglian.mappers;
 
+import com.hk.tonglian.entity.Info;
 import com.hk.tonglian.entity.Unit;
-import com.hk.tonglian.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,12 +10,15 @@ import java.util.List;
 /**
  * @description TODO
  * @Author:zzw
- * @Date:2022/9/1 16:57
+ * @Date:2022/9/5 12:40
  */
 @Mapper
-public interface UnitMapper {
+public interface InfoMapper {
+    List<Info> selAll();
 
-    List<Unit> selUnitParentAll(@Param("accountType") String accountType,@Param("unitId") String unitId);
+    Info selOneById(@Param("infoId") String infoId);
 
-    List<Unit> selOwnChild(String unitId);
+    int add(@Param("unit") Unit unit);
+
+    void edit(Unit unit);
 }
