@@ -55,16 +55,16 @@
             <div class="lsm-sidebar">
                 <ul>
                     <li class="lsm-sidebar-item">
-                        <a href="javascript:;"><i class="fa fa-paper-plane" aria-hidden="true"></i><span>信息报送</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <a style="text-decoration: none;" href="javascript:;"><i class="fa fa-paper-plane" aria-hidden="true"></i><span>信息报送</span><i class="my-icon lsm-sidebar-more"></i></a>
 
                             <ul>
                                 <c:forEach items="${unitmap.data}" var="map" varStatus="vs">
                                 <li>
-                                    <a href="javascript:;"><i class="my-icon lsm-sidebar-icon "></i><span>${map.parent.unitName}</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                    <a style="text-decoration: none;" href="javascript:;"><i class="my-icon lsm-sidebar-icon "></i><span>${map.parent.unitName}</span><i class="my-icon lsm-sidebar-more"></i></a>
 
                                     <ul>
                                         <c:forEach items="${map.child}" var="childUnit" varStatus="vs">
-                                        <li><a href="javascript:;"><span>${childUnit.unitName}</span></a></li>
+                                        <li><a style="text-decoration: none;" href="javascript:;"><span>${childUnit.unitName}</span></a></li>
                                         </c:forEach>
                                     </ul>
 
@@ -76,15 +76,15 @@
                 </ul>
                 <ul>
                     <li class="lsm-sidebar-item">
-                        <a href="javascript:;"><i class="fa fa-volume-up" aria-hidden="true"></i><span>公告管理</span></a>
+                        <a style="text-decoration: none;" href="javascript:;"><i class="fa fa-volume-up" aria-hidden="true"></i><span>公告管理</span></a>
                     </li>
                 </ul>
                 <ul>
                     <li class="lsm-sidebar-item">
-                        <a href="javascript:;"><i class="fa fa-user" aria-hidden="true"></i><span>用户管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <a style="text-decoration: none;" href="javascript:;"><i class="fa fa-user" aria-hidden="true"></i><span>用户管理</span><i class="my-icon lsm-sidebar-more"></i></a>
                         <ul>
-                            <li><a href="javascript:;"><span>新增用户</span></a></li>
-                            <li><a href="javascript:;"><span>修改用户</span></a></li>
+                            <li><a style="text-decoration: none;" href="javascript:;"><span>新增用户</span></a></li>
+                            <li><a  style="text-decoration: none;" href="javascript:;"><span>修改用户</span></a></li>
                         </ul>
                     </li>
                 </ul>
