@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="/layui/css/layui.css">
 	<script src="/layui/layui.js"></script>
-	<script src="/js/jquery.js"></script>
+	<script src="/js/jquery.min.js"></script>
 	<style>
 		.layui-form {
 			width: 90%;
@@ -69,7 +69,7 @@
 		var unitId = parent.$("#unitId").val();
 		$("#infoUnitid").val(unitId)
 		if (title.length==0){
-			layer.msg("标题不能为空！", {icon: 6});
+			layer.alert("标题不能为空！", {icon: 0});
 			return false;
 		}
 /*		var form = document.getElementById("addform");
@@ -85,12 +85,12 @@
 			success:function (data) {
 				if("success" == data){
 					/*layer.msg("标题不能为空！", {icon: 16});*/
-					alert("保存成功");
+					layer.alert("保存成功",{icon:1});
 					window.parent.location.reload(); //刷新父页面
-					var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-					parent.layer.close(index);  // 关闭layer
+					//var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+					//parent.layer.close(index);  // 关闭layer
 				}else{
-					alert("保存失败");
+					layer.alert("保存失败",{icon:2});
 				}
 			}
 		})

@@ -3,7 +3,7 @@ package com.hk.tonglian.service;
 import com.hk.tonglian.entity.User;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * @description TODO
@@ -23,5 +23,5 @@ public interface UserService {
 
     void edit(User user);
 
-    List<User> selUserAll();
+    Map<String, Object> selUserAll(User user, Integer pageNumber, Integer pageSize);
 }

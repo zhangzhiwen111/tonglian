@@ -13,7 +13,7 @@
 <link href="/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
 <link href="/css/css1.css" rel="stylesheet" type="text/css" />
 <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<script src="/js/jquery.js"></script>
+<script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/layui/layui.js"></script>
 </head>

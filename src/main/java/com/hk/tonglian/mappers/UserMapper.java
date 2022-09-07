@@ -24,5 +24,5 @@ public interface UserMapper {
 
     void update(User user);
 
-    List<User> selUserAll();
+    List<User> selUserAll(User user);
 }

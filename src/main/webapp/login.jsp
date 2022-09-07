@@ -4,7 +4,7 @@
   <head>
     <title>通联平台</title>
 	<link href="/css/css.css" rel="stylesheet" type="text/css" />
-      <script type="text/javascript" src="/js/jquery.js"></script>
+      <script type="text/javascript" src="/js/jquery.min.js"></script>
   </head>
   
 <body>

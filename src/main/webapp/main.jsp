@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/left-side-menu.css">
     <link rel="stylesheet" type="text/css" href="/font/iconfont.css">
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="/js/left-side-menu.js"></script>
@@ -85,11 +85,11 @@
                 </ul>
                 <ul>
                     <li class="lsm-sidebar-item">
-                        <a style="text-decoration: none;" href="javascript:;"><i class="fa fa-user" aria-hidden="true"></i><span>用户管理</span><i class="my-icon lsm-sidebar-more"></i></a>
-                        <ul>
+                        <a style="text-decoration: none;" onclick="toUserList();" href="javascript:;"><i class="fa fa-user" aria-hidden="true"></i><span>用户管理</span><%--<i class="my-icon lsm-sidebar-more"></i>--%></a>
+                       <%-- <ul>
                             <li><a style="text-decoration: none;" href="javascript:;"><span>新增用户</span></a></li>
                             <li><a  style="text-decoration: none;" href="javascript:;"><span>修改用户</span></a></li>
-                        </ul>
+                        </ul>--%>
                     </li>
                 </ul>
             </div>
@@ -110,5 +110,8 @@
         right.src="/info/list?unitId="+id+"&default1="+isfname;
 
     }
-    
+    function toUserList() {
+        var right = document.getElementById("rightFrame");
+        right.src="/user/toListPage";
+    }
 </script>

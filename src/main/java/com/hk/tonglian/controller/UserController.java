@@ -6,6 +6,7 @@ import com.hk.tonglian.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -24,13 +25,27 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("list")
-    public ModelAndView list(Unit unit){
+    @RequestMapping("toListPage")
+    public ModelAndView list(){
         ModelAndView modelAndView= new ModelAndView();
-        List<User> userlist = userService.selUserAll();
-        modelAndView.addObject("userlist",userlist);
-        modelAndView.setViewName("useradd");
+        modelAndView.setViewName("user");
         return modelAndView;
+    }
+
+    @RequestMapping("list")
+    @ResponseBody
+    public Map<String,Object> list(User user,Integer pageNumber,Integer pageSize){
+        Map<String,Object> map = new HashMap<>();
+        try{
+            map = userService.selUserAll(user,pageNumber,pageSize);
+
+        }catch (Exception e){
+            map.put("status","1");
+            e.printStackTrace();
+        }
+
+
+        return map;
     }
 
     @RequestMapping("toadd")
@@ -51,15 +66,18 @@ public class UserController {
     }
 
     @RequestMapping("save")
-    public ModelAndView save(User user){
-        ModelAndView modelAndView= new ModelAndView();
+    public Map<String,Object> save(User user){
+        Map<String,Object> map = new HashMap<>();
         try{
             userService.save(user);
+            map.put("status","0");
+
         }catch(Exception e){
+            map.put("status","1");
             e.printStackTrace();
         }
-        modelAndView.setViewName("userlist");
-        return modelAndView;
+
+        return map;
     }
 
     @RequestMapping("edit")

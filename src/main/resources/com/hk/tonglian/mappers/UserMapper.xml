@@ -107,5 +107,13 @@
 
     <select id="selUserAll" resultMap="BaseResultMap">
         select * from "SYSTL"."user"
+        <where>
+            <if test="accountName!=null and accountName!=''">
+                and account_name like concat('%',#{accountName},'%')
+            </if>
+            <if test="nickName!=null and nickName!=''">
+                and nick_name like concat('%',#{nickName},'%')
+            </if>
+        </where>
     </select>
 </mapper>

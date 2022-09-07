@@ -1,12 +1,16 @@
 package com.hk.tonglian.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hk.tonglian.entity.User;
 import com.hk.tonglian.mappers.UserMapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description TODO
@@ -45,7 +49,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> selUserAll() {
-        return userMapper.selUserAll();
+    public Map<String, Object> selUserAll(User user, Integer pageNumber, Integer pageSize) {
+        Map<String,Object> map = new HashMap<>();
+        PageHelper.startPage(pageNumber,pageSize);
+        List<User> userlist = userMapper.selUserAll(user);
+        PageInfo<User> page = new PageInfo<>(userlist);
+        map.put("rows",page.getList());
+        map.put("total",page.getTotal());
+        map.put("status","0");
+        return map;
     }
 }
