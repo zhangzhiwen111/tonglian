@@ -7,7 +7,7 @@
         <result column="info_content" jdbcType="CLOB" property="infoContent" />
         <result column="info_creatorcn" jdbcType="VARCHAR" property="infoCreatorcn"/>
         <result column="info_creatoren" jdbcType="VARCHAR" property="infoCreatoren" />
-        <result column="info_reatorunit" jdbcType="VARCHAR" property="infoCreatorunit" />
+        <result column="info_unitid" jdbcType="VARCHAR" property="infoUnitid" />
         <result column="info_createtime" jdbcType="VARCHAR" property="infoCreatetime" />
         <result column="info_updatetme" jdbcType="VARCHAR" property="infoUpdatetme" />
         <result column="info_type" jdbcType="VARCHAR" property="infoType" />
@@ -15,6 +15,7 @@
         <result column="info_tocolumn" jdbcType="VARCHAR" property="infoToColumn" />
         <result column="default1" jdbcType="VARCHAR" property="default1" />
         <result column="default2" jdbcType="VARCHAR" property="default2" />
+        <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
     </resultMap>
 
     <!-- 字段 -->
@@ -24,7 +25,7 @@
         "info_content",
         "info_creatorcn",
         "info_creatoren",
-        "info_reatorunit",
+        "info_unitid",
         "info_createtime",
         "info_updatetme",
         "info_type",
@@ -40,7 +41,7 @@
         #{infoContent},
         #{infoCreatorcn},
         #{infoCreatoren},
-        #{infoCreatorunit},
+        #{infoUnitid},
         #{infoCreatetime},
         #{infoUpdatetme},
         #{infoType},
@@ -49,11 +50,26 @@
         #{default1},
         #{default2}
     </sql>
-    <select id = "selAll"  resultMap="BaseResultMap">
-        select *
-        from "SYSTL"."info"
+    <!--查詢父栏目下的所有子栏目的信息-->
+    <select id = "selAll"  parameterType="com.hk.tonglian.entity.Info" resultMap="BaseResultMap">
+            select *,u.unit_name from "SYSTL"."info" i
+			left join "SYSTL"."unit" u
+			on u.unit_id =i.info_unitid
+            where info_unitid in (
+            select unit_id from "SYSTL"."unit"
+            where unit_fid = #{unitId} or unit_id = #{unitId}
+            )
+        order by info_updatetme desc
     </select>
-    <select id = "selOneById" parameterType="String" resultType="com.hk.tonglian.entity.Info">
+    <!--根据所在本单位的id查找新闻-->
+    <select id = "selOwnByUnitid"  parameterType="com.hk.tonglian.entity.Unit" resultMap="BaseResultMap">
+            select *,u.unit_name from "SYSTL"."info" i
+			left join "SYSTL"."unit" u
+			on u.unit_id =i.info_unitid
+        where i.info_unitid=#{unitId}
+        order by i.info_updatetme desc
+    </select>
+    <select id = "selOneById" parameterType="String" resultMap="BaseResultMap">
         select *
         from "SYSTL"."info"
         where info_id=#{infoId}
@@ -82,8 +98,8 @@
         <if test="infoCreatoren != null and infoCreatoren != ''">
             "info_creatoren" = #{infoCreatoren},
         </if>
-        <if test="infoCreatorunit != null and infoCreatorunit != ''">
-            "info_creatorunit" = #{infoCreatorunit},
+        <if test="infoUnitid != null and infoUnitid != ''">
+            "info_unitid" = #{infoUnitid},
         </if>
         <if test="infoType != null and infoType != ''">
             "info_type" = #{infoType},

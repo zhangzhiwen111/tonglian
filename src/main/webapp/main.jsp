@@ -60,11 +60,15 @@
                             <ul>
                                 <c:forEach items="${unitmap.data}" var="map" varStatus="vs">
                                 <li>
-                                    <a style="text-decoration: none;" href="javascript:;"><i class="my-icon lsm-sidebar-icon "></i><span>${map.parent.unitName}</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                    <a style="text-decoration: none;" onclick="tolist('${map.parent.unitId}','yes');" href="javascript:;"><i class="my-icon lsm-sidebar-icon "></i><span>${map.parent.unitName}</span>
+                                        <c:if test="${map.child.size()>0}">
+                                        <i class="my-icon lsm-sidebar-more"></i>
+                                        </c:if>
+                                    </a>
 
                                     <ul>
                                         <c:forEach items="${map.child}" var="childUnit" varStatus="vs">
-                                        <li><a style="text-decoration: none;" href="javascript:;"><span>${childUnit.unitName}</span></a></li>
+                                        <li><a style="text-decoration: none;" onclick="tolist('${childUnit.unitId}','no');" href="javascript:;"><span>${childUnit.unitName}</span></a></li>
                                         </c:forEach>
                                     </ul>
 
@@ -94,8 +98,17 @@
 </div>
 
         <div class="modal1_right">
-            <iframe frameborder="0" scrolling="yes" style="width:100%;height:100%" src="/info.jsp"  name = "rightFrame" id="rightFrame"></iframe>
+            <iframe frameborder="0" scrolling="yes" style="width:100%;height:100%" src=""  name = "rightFrame" id="rightFrame"></iframe>
         </div>
 </div>
 </body>
 </html>
+<script>
+    /*请求右侧页面*/
+    function tolist(id,isfname) {
+        var right = document.getElementById("rightFrame");
+        right.src="/info/list?unitId="+id+"&default1="+isfname;
+
+    }
+    
+</script>

@@ -14,11 +14,13 @@ import java.util.List;
  */
 @Service
 public interface InfoService {
-    List<Info> selAll();
+    List<Info> selAll(Unit unit);
 
     Info selOneById(@Param("infoId") String infoId);
 
     int add(Unit unit);
 
     void edit(Unit unit);
+
+    List<Info> selOwnByUnitid(Unit unit);
 }

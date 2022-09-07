@@ -19,8 +19,8 @@ public class InfoServiceImpl implements InfoService{
     @Autowired
     private InfoMapper infoMapper;
     @Override
-    public List<Info> selAll() {
-        return infoMapper.selAll();
+    public List<Info> selAll(Unit unit) {
+        return infoMapper.selAll(unit);
     }
 
     @Override
@@ -36,6 +36,11 @@ public class InfoServiceImpl implements InfoService{
     @Override
     public void edit(Unit unit) {
          infoMapper.edit(unit);
+    }
+
+    @Override
+    public List<Info> selOwnByUnitid(Unit unit) {
+        return infoMapper.selOwnByUnitid(unit);
     }
 
 

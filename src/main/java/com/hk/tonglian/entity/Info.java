@@ -14,7 +14,8 @@ public class Info {
     private String infoContent;
     private String infoCreatorcn;
     private String infoCreatoren;
-    private String infoCreatorunit;
+    private String infoUnitid;
+
     private String infoCreatetime;
     private String infoUpdatetme;
     private String infoType;
@@ -22,7 +23,7 @@ public class Info {
     private String infoToColumn;
     private String default1;
     private String default2;
-
+    private String unitName;
     public String getInfoId() {
         return infoId;
     }
@@ -63,12 +64,12 @@ public class Info {
         this.infoCreatoren = infoCreatoren;
     }
 
-    public String getInfoCreatorunit() {
-        return infoCreatorunit;
+    public String getInfoUnitid() {
+        return infoUnitid;
     }
 
-    public void setInfoCreatorunit(String infoCreatorunit) {
-        this.infoCreatorunit = infoCreatorunit;
+    public void setInfoUnitid(String infoUnitid) {
+        this.infoUnitid = infoUnitid;
     }
 
     public String getInfoCreatetime() {
@@ -125,5 +126,13 @@ public class Info {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 }

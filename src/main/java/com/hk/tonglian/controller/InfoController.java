@@ -2,12 +2,14 @@ package com.hk.tonglian.controller;
 
 import com.hk.tonglian.entity.Info;
 import com.hk.tonglian.entity.Unit;
+import com.hk.tonglian.entity.User;
 import com.hk.tonglian.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +26,25 @@ public class InfoController {
     private InfoService infoService;
     /*查询所有*/
     @RequestMapping("list")
-    public ModelAndView selAll(){
+    public ModelAndView selAll(Unit unit,HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
-        List<Info> list = new ArrayList<>();
-        list = infoService.selAll();
-        modelAndView.addObject("infolist",list);
-        modelAndView.setViewName("infolist");
+        /*User user = (User) request.getSession().getAttribute("currentSessionUser");
+        if(null!=user){*/
+            /*判断是否有子栏目*/
+            String default1 = unit.getDefault1();
+            List<Info> list = new ArrayList<>();
+            if("yes".equals(default1)){
+                list = infoService.selAll(unit);
+            }else {
+                list = infoService.selOwnByUnitid(unit);
+            }
+            modelAndView.addObject("infolist",list);
+            modelAndView.addObject("status","1");
+            modelAndView.setViewName("info");
+/*        }else {
+            modelAndView.addObject("msg","请重新登录！");
+            modelAndView.setViewName("login");
+        }*/
         return modelAndView;
     }
 

@@ -14,11 +14,13 @@ import java.util.List;
  */
 @Mapper
 public interface InfoMapper {
-    List<Info> selAll();
+    List<Info> selAll(Unit unit);
 
     Info selOneById(@Param("infoId") String infoId);
 
     int add(@Param("unit") Unit unit);
 
     void edit(Unit unit);
+
+    List<Info> selOwnByUnitid(Unit unit);
 }
