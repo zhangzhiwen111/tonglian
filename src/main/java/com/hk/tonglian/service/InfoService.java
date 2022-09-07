@@ -18,9 +18,9 @@ public interface InfoService {
 
     Info selOneById(@Param("infoId") String infoId);
 
-    int add(Unit unit);
+    int add(Info info);
 
-    void edit(Unit unit);
+    void edit(Info info);
 
     List<Info> selOwnByUnitid(Unit unit);
 }

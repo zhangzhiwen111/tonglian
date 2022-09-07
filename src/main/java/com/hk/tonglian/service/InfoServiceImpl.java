@@ -29,13 +29,13 @@ public class InfoServiceImpl implements InfoService{
     }
 
     @Override
-    public int add(Unit unit) {
-        return infoMapper.add(unit);
+    public int add(Info info) {
+        return infoMapper.add(info);
     }
 
     @Override
-    public void edit(Unit unit) {
-         infoMapper.edit(unit);
+    public void edit(Info info) {
+         infoMapper.edit(info);
     }
 
     @Override

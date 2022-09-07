@@ -16,11 +16,11 @@ import java.util.List;
 public interface InfoMapper {
     List<Info> selAll(Unit unit);
 
-    Info selOneById(@Param("infoId") String infoId);
+    Info selOneById(String infoId);
 
-    int add(@Param("unit") Unit unit);
+    int add(Info info);
 
-    void edit(Unit unit);
+    void edit(Info info);
 
     List<Info> selOwnByUnitid(Unit unit);
 }

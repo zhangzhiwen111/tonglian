@@ -1,17 +1,22 @@
 package com.hk.tonglian.controller;
 
+import com.hk.tonglian.UtilTool;
 import com.hk.tonglian.entity.Info;
 import com.hk.tonglian.entity.Unit;
 import com.hk.tonglian.entity.User;
 import com.hk.tonglian.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @description 新闻
@@ -32,6 +37,7 @@ public class InfoController {
         if(null!=user){*/
             /*判断是否有子栏目*/
             String default1 = unit.getDefault1();
+            String unitId = unit.getUnitId();
             List<Info> list = new ArrayList<>();
             if("yes".equals(default1)){
                 list = infoService.selAll(unit);
@@ -39,6 +45,8 @@ public class InfoController {
                 list = infoService.selOwnByUnitid(unit);
             }
             modelAndView.addObject("infolist",list);
+            modelAndView.addObject("unitId",unitId);
+
             modelAndView.addObject("status","1");
             modelAndView.setViewName("info");
 /*        }else {
@@ -76,15 +84,30 @@ public class InfoController {
 
     //新增新闻
     @RequestMapping("add")
-    public String  add(Unit unit){
-        int result  = infoService.add(unit);
-        return "";
+    @ResponseBody
+    public String  add(Info info,HttpServletRequest request){
+            User user = (User) request.getSession().getAttribute("currentSessionUser");
+            if (user != null) {
+                info.setInfoCreatorcn(user.getNickName());
+                info.setInfoCreatoren(user.getAccountName());
+            }
+            info.setInfoCreatetime(UtilTool.getNowLong());
+            info.setInfoUpdatetme(UtilTool.getNowLong());
+            //状态未提交
+            info.setInfoStatus("0");
+            info.setInfoId(UUID.randomUUID().toString().replace("-", ""));
+            int result = infoService.add(info);
+            if (result == 1) {
+                return "success";
+            } else {
+                return "false";
+            }
     }
 
     //编辑新闻
     @RequestMapping("edit")
-    public String edit(Unit unit){
-        infoService.edit(unit);
+    public String edit(Info info){
+        infoService.edit(info);
         return "";
     }
 }
