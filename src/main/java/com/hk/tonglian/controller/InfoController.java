@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @description 新闻
@@ -29,31 +26,27 @@ public class InfoController {
 
     @Autowired
     private InfoService infoService;
+
+
+    @RequestMapping("toListPage")
+    public ModelAndView list(Unit unit){
+        ModelAndView modelAndView= new ModelAndView();
+        modelAndView.addObject("unit",unit);
+        modelAndView.setViewName("info");
+        return modelAndView;
+    }
+
     /*查询所有*/
     @RequestMapping("list")
-    public ModelAndView selAll(Unit unit,HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView();
-        /*User user = (User) request.getSession().getAttribute("currentSessionUser");
-        if(null!=user){*/
-            /*判断是否有子栏目*/
-            String default1 = unit.getDefault1();
-            String unitId = unit.getUnitId();
-            List<Info> list = new ArrayList<>();
-            if("yes".equals(default1)){
-                list = infoService.selAll(unit);
-            }else {
-                list = infoService.selOwnByUnitid(unit);
-            }
-            modelAndView.addObject("infolist",list);
-            modelAndView.addObject("unitId",unitId);
-
-            modelAndView.addObject("status","1");
-            modelAndView.setViewName("info");
-/*        }else {
-            modelAndView.addObject("msg","请重新登录！");
-            modelAndView.setViewName("login");
-        }*/
-        return modelAndView;
+    public Map<String,Object> selAll(Unit unit,Integer pageNumber,Integer pageSize){
+        Map<String,Object> map = new HashMap<>();
+        try{
+            map = infoService.selAll(unit,pageNumber,pageSize);
+        }catch (Exception e){
+            map.put("status","1");
+            e.printStackTrace();
+        }
+        return map;
     }
 
     @RequestMapping("selOneById")
@@ -84,24 +77,30 @@ public class InfoController {
 
     //新增新闻
     @RequestMapping("add")
-    @ResponseBody
-    public String  add(Info info,HttpServletRequest request){
-            User user = (User) request.getSession().getAttribute("currentSessionUser");
-            if (user != null) {
-                info.setInfoCreatorcn(user.getNickName());
-                info.setInfoCreatoren(user.getAccountName());
+    public Map<String,Object>  add(Info info,HttpServletRequest request){
+            Map<String,Object> map = new HashMap<>();
+            try {
+                    User user = (User) request.getSession().getAttribute("currentSessionUser");
+                    if (user != null) {
+                        info.setInfoCreatorcn(user.getNickName());
+                        info.setInfoCreatoren(user.getAccountName());
+                    }
+                    info.setInfoCreatetime(UtilTool.getNowLong());
+                    info.setInfoUpdatetme(UtilTool.getNowLong());
+                    //状态未提交
+                    info.setInfoStatus("0");
+                    info.setInfoId(UUID.randomUUID().toString().replace("-", ""));
+                    int result = infoService.add(info);
+                    if (result == 1) {
+                        map.put("status","0");
+                    } else {
+                        map.put("status","1");
+                    }
+            }catch (Exception e){
+                map.put("status","1");
+                e.printStackTrace();
             }
-            info.setInfoCreatetime(UtilTool.getNowLong());
-            info.setInfoUpdatetme(UtilTool.getNowLong());
-            //状态未提交
-            info.setInfoStatus("0");
-            info.setInfoId(UUID.randomUUID().toString().replace("-", ""));
-            int result = infoService.add(info);
-            if (result == 1) {
-                return "success";
-            } else {
-                return "false";
-            }
+            return  map;
     }
 
     //编辑新闻

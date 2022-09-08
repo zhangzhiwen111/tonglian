@@ -21,7 +21,6 @@
     <script type="text/javascript" src="/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-table-zh-CN.min.js"></script>
-
     <script src="/layui/layui.js"></script>
 </head>
 
@@ -41,7 +40,7 @@
             </form>
         </div>
 
-        <table id="table" <%--width="100%" cellpadding="0" cellspacing="0" class="table table-hover"--%>>
+        <table id="table">
 
         </table>
 
@@ -216,9 +215,6 @@ function pageInit(){
                }else{
                    layer.alert("操作失败",{icon:2});
                }
-
-              // $("#addUser").modal();
-
            }
        })
     }

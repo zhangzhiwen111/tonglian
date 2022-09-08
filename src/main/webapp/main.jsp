@@ -107,8 +107,7 @@
     /*请求右侧页面*/
     function tolist(id,isfname) {
         var right = document.getElementById("rightFrame");
-        right.src="/info/list?unitId="+id+"&default1="+isfname;
-
+        right.src="/info/toListPage?unitId="+id+"&default1="+isfname;
     }
     function toUserList() {
         var right = document.getElementById("rightFrame");

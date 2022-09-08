@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description TODO
@@ -14,13 +15,12 @@ import java.util.List;
  */
 @Service
 public interface InfoService {
-    List<Info> selAll(Unit unit);
+
+    Map<String, Object> selAll(Unit unit, Integer pageNumber, Integer pageSize);
 
     Info selOneById(@Param("infoId") String infoId);
 
     int add(Info info);
 
     void edit(Info info);
-
-    List<Info> selOwnByUnitid(Unit unit);
 }

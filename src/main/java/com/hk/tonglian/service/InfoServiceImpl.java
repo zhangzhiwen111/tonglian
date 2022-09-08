@@ -1,13 +1,18 @@
 package com.hk.tonglian.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hk.tonglian.entity.Info;
 import com.hk.tonglian.entity.Unit;
+import com.hk.tonglian.entity.User;
 import com.hk.tonglian.mappers.InfoMapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description TODO
@@ -19,8 +24,23 @@ public class InfoServiceImpl implements InfoService{
     @Autowired
     private InfoMapper infoMapper;
     @Override
-    public List<Info> selAll(Unit unit) {
-        return infoMapper.selAll(unit);
+    public Map<String, Object> selAll(Unit unit, Integer pageNumber, Integer pageSize) {
+        String default1 = unit.getDefault1();
+        Map<String,Object> map = new HashMap<>();
+        PageHelper.startPage(pageNumber,pageSize);
+        List<Info> infolist = new ArrayList<>();
+        if("yes".equals(default1)){
+            infolist = infoMapper.selAll(unit);
+        }else {
+            infolist = infoMapper.selOwnByUnitid(unit);
+        }
+
+        PageInfo<Info> page = new PageInfo<Info>(infolist);
+        map.put("rows",page.getList());
+        map.put("total",page.getTotal());
+        map.put("status","0");
+        PageHelper.startPage(pageNumber,pageSize);
+        return map;
     }
 
     @Override
@@ -38,10 +58,7 @@ public class InfoServiceImpl implements InfoService{
          infoMapper.edit(info);
     }
 
-    @Override
-    public List<Info> selOwnByUnitid(Unit unit) {
-        return infoMapper.selOwnByUnitid(unit);
-    }
+
 
 
 }
