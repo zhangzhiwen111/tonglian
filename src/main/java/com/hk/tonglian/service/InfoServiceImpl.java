@@ -39,7 +39,6 @@ public class InfoServiceImpl implements InfoService{
         map.put("rows",page.getList());
         map.put("total",page.getTotal());
         map.put("status","0");
-        PageHelper.startPage(pageNumber,pageSize);
         return map;
     }
 

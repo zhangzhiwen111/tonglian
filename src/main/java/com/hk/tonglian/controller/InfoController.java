@@ -38,6 +38,7 @@ public class InfoController {
 
     /*查询所有*/
     @RequestMapping("list")
+    @ResponseBody
     public Map<String,Object> selAll(Unit unit,Integer pageNumber,Integer pageSize){
         Map<String,Object> map = new HashMap<>();
         try{
