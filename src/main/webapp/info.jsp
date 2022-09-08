@@ -173,7 +173,10 @@
 			},{
 				field : "status",
 				title : "状态",
-				align : 'center'
+				align : 'center',
+				formatter: function (value, rows, index) {
+					return '';
+				}
 			},{
 				field : "info_createtime",
 				title : "创建时间",
