@@ -40,9 +40,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>dm</groupId>
-            <artifactId>dm.jdbc.driver</artifactId>
-            <version>17.0.1</version>
+            <groupId>com.dm</groupId>
+            <artifactId>DmJdbcDriver</artifactId>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -61,89 +61,63 @@
             <version>2.1.1</version>
         </dependency>
         <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>5.2</version>
-        </dependency>
-        <!-- logback -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--jstl依赖-->
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <!--    UEditor    -->
-        <dependency>
-            <groupId>com.gitee.qdbp.thirdparty</groupId>
-            <artifactId>ueditor</artifactId>
-            <version>1.4.3.3</version>
         </dependency>
         <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.3.2</version>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.9</version>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.1</version>
         </dependency>
-        <!--<dependency>
-            <groupId>ueditor</groupId>
-            <artifactId>ueditor</artifactId>
-            <version>1.5.0</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/lib/ueditor.jar</systemPath>
-        </dependency>-->
+
     </dependencies>
 
     <build>
         <!--        springboot集成jsp路径-->
-<!--        <resources>
-            <resource>
+        <resources>
+            <!--<resource>
                 &lt;!&ndash;                源文件夹&ndash;&gt;
                 <directory>src/main/webapp</directory>
                 &lt;!&ndash;                指定编译的位置&ndash;&gt;
-                <targetPath>src/main/resources</targetPath>
+                <targetPath>src/main/webapp</targetPath>
                 &lt;!&ndash;                哪些资源需要编译&ndash;&gt;
                 <includes>
                     &lt;!&ndash;                    所有资源&ndash;&gt;
                     <include>*.*</include>
                 </includes>
+            </resource>-->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
             </resource>
-        </resources>-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
 
         <plugins>
             <plugin>
@@ -158,17 +132,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <!--<plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <arguments>
-                        <argument>${project.basedir}\lib</argument>
-                    </arguments>
-                </configuration>
-            </plugin>-->
         </plugins>
-
     </build>
 
 </project>
