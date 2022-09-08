@@ -25,8 +25,8 @@
     </div>
     <div class="header_right"  width="100%" height="70">
         <ul>
-            <li><a><i class="fa fa-user-circle-o" aria-hidden="true"></i>张志文</a></li>
-            <li><a><i class="fa fa-lock" aria-hidden="true" ></i>修改密码</a></li>
+            <li><a><i class="fa fa-user-circle-o" aria-hidden="true"></i>${user.nickName}</a></li>
+            <li><a  onclick="modifyPass()"><i class="fa fa-lock" aria-hidden="true" ></i>修改密码</a></li>
             <li><a href="/login/logout"><i class="fa fa-power-off" aria-hidden="true"></i>退出登录</a></li>
         </ul>
     </div>
@@ -100,6 +100,58 @@
         <div class="modal1_right">
             <iframe frameborder="0" scrolling="yes" style="width:100%;height:100%" src=""  name = "rightFrame" id="rightFrame"></iframe>
         </div>
+
+    <div class="modal fade bs-example-modal-lg" id="modifyPass" tabindex="-1" role="dialog" aria-labelledby="modifyPass">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="">修改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="modifyPassfrom" class="form-horizontal" >
+
+                        <div class="row">
+                            <div class="form-group col-md-8 col-lg-8 ">
+                                <label class="col-sm-4 control-label"><span>*</span>原密码：</label>
+                                <div class="col-sm-8 col-md-8">
+                                    <input type="text" class="form-control"  id="old_accountPass" name="old_accountPass"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-8 col-lg-8 ">
+                                <label class="col-sm-4 control-label"><span>*</span>设置新密码：</label>
+                                <div class="col-sm-8 col-md-8">
+                                    <input type="text" class="form-control"  id="new_accountPass" name="new_accountPass"/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-lg-8 ">
+                                <label class="col-sm-4 control-label"><span>*</span>确认密码：</label>
+                                <div class="col-sm-8 col-md-8">
+                                    <input type="text" class="form-control" id="again_accountPass" name="again_accountPass"/>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="userSubmit()">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
@@ -112,5 +164,10 @@
     function toUserList() {
         var right = document.getElementById("rightFrame");
         right.src="/user/toListPage";
+    }
+    
+    
+    function modifyPass() {
+        $("#modifyPass").modal("show");
     }
 </script>

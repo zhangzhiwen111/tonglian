@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @description TODO
@@ -40,6 +41,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void save(User user) {
+        user.setAccountId(UUID.randomUUID().toString().replace("-", ""));
+        Integer count = userMapper.countUser();
+        user.setAccountOrder(count+1+"");
+        user.setStatus("1");
         userMapper.save(user);
     }
 
@@ -58,5 +63,10 @@ public class UserServiceImpl implements UserService{
         map.put("total",page.getTotal());
         map.put("status","0");
         return map;
+    }
+
+    @Override
+    public void del(String accountId) {
+        userMapper.del(accountId);
     }
 }

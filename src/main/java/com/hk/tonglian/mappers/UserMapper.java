@@ -25,4 +25,8 @@ public interface UserMapper {
     void update(User user);
 
     List<User> selUserAll(User user);
+
+    Integer countUser();
+
+    void del(String accountId);
 }

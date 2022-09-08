@@ -17,6 +17,15 @@ public class User{
     private String unitId;
     private String default1;
     private String default2;
+    private String unitName;
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
 
     public String getAccountId() {
         return accountId;

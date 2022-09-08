@@ -48,24 +48,24 @@ public class UserController {
         return map;
     }
 
-    @RequestMapping("toadd")
-    public ModelAndView toadd(Unit unit){
-        ModelAndView modelAndView= new ModelAndView();
-        modelAndView.addObject("unit",unit);
-        modelAndView.setViewName("useradd");
-        return modelAndView;
-    }
 
-    @RequestMapping("toedit")
-    public ModelAndView toedit(String uid){
-        ModelAndView modelAndView= new ModelAndView();
-        User user = userService.selUserById(uid);
-        modelAndView.addObject("user",user);
-        modelAndView.setViewName("useredit");
-        return modelAndView;
+    @RequestMapping("selUserById")
+    @ResponseBody
+    public Map<String,Object> toedit(String accountId){
+        Map<String,Object> map = new HashMap<>();
+        try{
+            User user = userService.selUserById(accountId);
+            map.put("data",user);
+            map.put("status","0");
+        }catch (Exception e){
+            map.put("status","1");
+            e.printStackTrace();
+        }
+        return map;
     }
 
     @RequestMapping("save")
+    @ResponseBody
     public Map<String,Object> save(User user){
         Map<String,Object> map = new HashMap<>();
         try{
@@ -81,16 +81,34 @@ public class UserController {
     }
 
     @RequestMapping("edit")
-    public ModelAndView checkExitUser(User user){
-        ModelAndView modelAndView= new ModelAndView();
+    @ResponseBody
+    public Map<String,Object> checkExitUser(User user){
+        Map<String,Object> map = new HashMap<>();
         try{
             userService.edit(user);
+            map.put("status","0");
         }catch(Exception e){
+            map.put("status","1");
             e.printStackTrace();
         }
-        modelAndView.setViewName("userlist");
-        return modelAndView;
+        return map;
+
     }
 
+    @RequestMapping("del")
+    @ResponseBody
+    public Map<String,Object> del(String accountId){
+        Map<String,Object> map = new HashMap<>();
+        try{
+            userService.del(accountId);
+            map.put("status","0");
+
+        }catch(Exception e){
+            map.put("status","1");
+            e.printStackTrace();
+        }
+
+        return map;
+    }
 
 }

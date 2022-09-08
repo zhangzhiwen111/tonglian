@@ -24,4 +24,6 @@ public interface UserService {
     void edit(User user);
 
     Map<String, Object> selUserAll(User user, Integer pageNumber, Integer pageSize);
+
+    void del(String accountId);
 }
